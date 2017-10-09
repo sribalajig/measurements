@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  measurement-api:
+    build:
+      context: .
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mongo
+    environment:
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - HTTP_SERVER_PORT=9090
+
+  mongo:
+    image: mongo:latest
+    expose: 
+      - 27017
+    ports:
+      - "27017:27017"
